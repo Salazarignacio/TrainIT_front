@@ -1,0 +1,11 @@
+<app-nav></app-nav>
+
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <p *ngIf="!userLoginOn" class="alert alert-warning text-center">Usuario NO autenticado</p>
+    <p *ngIf="userLoginOn" class="alert alert-success text-center">Usuario autenticado</p>
+    <div *ngIf="userLoginOn" class="user-info mt-3 text-center">
+      <p class="font-weight-bold">{{ userData?.name }}</p>
+      <p>{{ userData?.email }}</p>
+    </div>
+  </div>
+  
