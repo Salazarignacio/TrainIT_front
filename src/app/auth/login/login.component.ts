@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
       const data = await response.json();
       console.log(data);
 
-      /* this.router.navigateByUrl('/start');
-      this.loginForm.reset(); */
+      this.router.navigateByUrl('/start');
+      this.loginForm.reset();
     } else {
       this.loginForm.markAllAsTouched();
       alert('Error al ingresar los datos');
