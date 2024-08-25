@@ -30,22 +30,20 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls.password;
   }
 
-  login() {
+  async login() {
     if (this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
-        next: (userData) => {
-          console.log(userData);
-        },
-        error: (errorData) => {
-          console.error(errorData);
-          this.loginError = errorData;
-        },
-        complete: () => {
-          console.log('login complete!');
-        },
-      });
-      this.router.navigateByUrl('/start');
-      this.loginForm.reset();
+      console.log(this.loginForm.value);
+      const opts = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.loginForm.value),
+      };
+      let response = await fetch('http://localhost:8080/users/login', opts);
+      const data = await response.json();
+      console.log(data);
+
+      /* this.router.navigateByUrl('/start');
+      this.loginForm.reset(); */
     } else {
       this.loginForm.markAllAsTouched();
       alert('Error al ingresar los datos');
